@@ -1,13 +1,11 @@
 <?php
 
-require_once 'autoload.php';
+require_once 'autoLoad.php';
 
-use Alura\Banco\Modelo\Conta\Titular;
-use Alura\Banco\Modelo\Endereco;
-use Alura\Banco\Modelo\CPF;
-use Alura\Banco\Modelo\Conta\Conta;
+use Alura\Banco\Modelo\{Funcionario, Pessoa, Endereco, CPF};
+use Alura\Banco\Modelo\Conta\{Conta, ContaCorrente, ContaPoupanca, Titular};
 
-$primeiraConta = new Conta(new Titular(new CPF ('19-11'), 'Vinicius Dias', new Endereco('São Paulo', 'Campinas', 'Rua Amazonas', '501')));
+$primeiraConta = new ContaCorrente(new Titular(new CPF ('19-11'), 'Vinicius Dias', new Endereco('São Paulo', 'Campinas', 'Rua Amazonas', '501')));
 
 $primeiraConta->deposita(500);
 $primeiraConta->saca(300); // isso é ok
@@ -17,10 +15,10 @@ echo $primeiraConta->recuperaCpfTitular() . PHP_EOL;
 //echo $primeiraConta->recuperaEnderecoTitular() . PHP_EOL;
 echo $primeiraConta->recuperaSaldo() . PHP_EOL;
 
-$segundaConta = new Conta(new Titular(new CPF ('123.456.789-11'),'Patricia', new Endereco('São Paulo', 'Socorro', 'Rua das flores', '15')));
+$segundaConta = new ContaPoupanca(new Titular(new CPF ('123.456.789-11'),'Patricia', new Endereco('São Paulo', 'Socorro', 'Rua das flores', '15')));
 var_dump($segundaConta);
 
-$outra = new Conta(new Titular(new CPF ('123.45'), 'Abcdefg', new Endereco('Paraná', 'Curitiba', 'Rua da rua', '215')));
+$outra = new ContaPoupanca(new Titular(new CPF ('123.45'), 'Abcdefg', new Endereco('Paraná', 'Curitiba', 'Rua da rua', '215')));
 echo Conta::recuperaNumeroDeContas() . PHP_EOL;
 
 $umaPessoa = new Pessoa('Paulão', new CPF('123.456.789-10'));
