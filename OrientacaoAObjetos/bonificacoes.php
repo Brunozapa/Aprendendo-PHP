@@ -37,3 +37,6 @@ $controlador->adicionaBonificacaoDe($umEditor);
 echo $controlador->recuperaTotal() . PHP_EOL;
 
 var_dump($umFuncionario) . PHP_EOL;
+
+$desenvolvedor = new Desenvolvedor('Vinicius', new CPF('123.456.789-10'), 2000);
+echo $desenvolvedor->nome;

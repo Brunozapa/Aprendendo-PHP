@@ -4,6 +4,8 @@ namespace Alura\Banco\Modelo;
 
 abstract class Pessoa
 {
+    use AcessoPropriedades; // Um use dentro da class significa sempre uma Trait
+
     protected $nome;
     private $cpf;
 
@@ -24,7 +26,7 @@ abstract class Pessoa
         return $this->nome;
     }
 
-    protected function validaNome(string $nome)
+    final protected function validaNome(string $nome)
     {
         if (strlen($nome) < 5){
             echo "Insira um nome válido (mais de 4 caracteres)";

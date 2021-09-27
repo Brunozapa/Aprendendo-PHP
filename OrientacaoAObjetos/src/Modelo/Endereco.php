@@ -1,24 +1,36 @@
 <?php
 
 namespace Alura\Banco\Modelo;
-class Endereco
+
+/**
+ * Class Endereco
+ * @package Alura\Banco\Modelo
+ * @property-read string $cidade
+ * @property-read string $bairro
+ * @property-read string $rua
+ * @property-read string $numero
+ */
+
+final class Endereco
 {
-    private $estado;
+    use AcessoPropriedades; // Um use dentro da class significa sempre uma Trait
+
     private $cidade;
+    private $bairro;
     private $rua;
     private $numero;
 
-    public function __construct(string $estado, string $cidade, string $rua, string $numero)
+    public function __construct(string $cidade, string $bairro, string $rua, string $numero)
     {
-        $this->estado = $estado;
         $this->cidade = $cidade;
+        $this->bairro = $bairro;
         $this->rua = $rua;
         $this->numero = $numero;
     }
 
-    public function recuperaEstado(): string
+    public function recuperaBairro(): string
     {
-        return $this->estado;
+        return $this->bairro;
     }
 
     public function recuperaCidade(): string
@@ -34,6 +46,33 @@ class Endereco
     public function recuperaNumero(): string
     {
         return $this->numero;
+    }
+
+    public function alteraCidade(string $novaCidade)
+    {
+        $this->cidade = $novaCidade;
+    }
+    public function alteraBairro(string $novoBairro)
+    {
+        $this->cidade = $novoBairro;
+    }
+    public function alteraRua(string $novaRua)
+    {
+        $this->cidade = $novaRua;
+    }
+    public function alteraNumero(string $novoNumero)
+    {
+        $this->cidade = $novoNumero;
+    }
+    public function __toString(): string
+    {
+        return "{$this->rua}, {$this->numero}, {$this->bairro}, {$this->cidade}";
+    }
+
+    public function __set($nomeAtributo, $novoValor)
+    {
+        $metodo = 'altera' . ucfirst($nomeAtributo);
+        $this->$metodo($novoValor);
     }
 }
 
