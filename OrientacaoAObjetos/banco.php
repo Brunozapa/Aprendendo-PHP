@@ -2,7 +2,8 @@
 
 require_once 'autoLoad.php';
 
-use Alura\Banco\Modelo\{Funcionario, Pessoa, Endereco, CPF};
+use Alura\Banco\Modelo\Funcionario\{Funcionario};
+use Alura\Banco\Modelo\{Endereco, CPF, Pessoa};
 use Alura\Banco\Modelo\Conta\{Conta, ContaCorrente, ContaPoupanca, Titular};
 
 $primeiraConta = new ContaCorrente(new Titular(new CPF ('19-11'), 'Vinicius Dias', new Endereco('São Paulo', 'Barra Funda', 'Rua Amazonas', '501')));
@@ -22,8 +23,8 @@ $outra = new ContaPoupanca(new Titular(new CPF ('123.45'), 'Abcdefg', new Endere
 echo Conta::recuperaNumeroDeContas() . PHP_EOL;
 
 
-$umFuncionario = new Funcionario('Vinicius', new CPF('123.456.789-10'), 'Desenvolvedor');
-$umFuncionario->alteraNome('Carlos');
+//$umFuncionario = new Funcionario('Vinicius', new CPF('123.456.789-10'), 'Desenvolvedor');
+//$umFuncionario->alteraNome('Carlos');
 
-echo $umFuncionario->recuperaNome() . PHP_EOL;
-echo $umFuncionario->recuperaCargo() . PHP_EOL;
+//echo $umFuncionario->recuperaNome() . PHP_EOL;
+//echo $umFuncionario->recuperaCargo() . PHP_EOL;

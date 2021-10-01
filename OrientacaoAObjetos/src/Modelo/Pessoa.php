@@ -28,10 +28,7 @@ abstract class Pessoa
 
     final protected function validaNome(string $nome)
     {
-        if (strlen($nome) < 5){
-            echo "Insira um nome válido (mais de 4 caracteres)";
-            exit();
-        }
+        if (strlen($nome) < 5) throw new NomeInvalidoException();
     }
 
 
