@@ -1,20 +1,21 @@
 <?php
 
 require 'vendor/autoload.php';
+require 'Buscador.php';
 
+use Alura\BuscadorDeCursos\Buscador;
 use GuzzleHttp\Client;
 use Symfony\Component\DomCrawler\Crawler;
 
-$client = new Client(['verify' => false]);
-$resposta = $client->request('GET', 'https://ge.globo.com/futebol/brasileirao-serie-a/');
-
-$html = $resposta->getBody();
-
+$client = new \GuzzleHttp\Client([
+    'base_uri' => 'https://www.alura.com.br/',
+    'verify' => false
+]);
 $crawler = new Crawler();
-$crawler->addHtmlContent($html);
 
-$times = $crawler->filter('strong.classificacao__equipes.classificacao__equipes--nome');
+$buscador = new Buscador($client, $crawler);
+$cursos = $buscador->buscar('/cursos-online-programacao/php');
 
-foreach ($times as $time) {
-    echo $time->textContent . PHP_EOL;
+foreach ($cursos as $curso) {
+    echo $curso . PHP_EOL;
 }
